@@ -1,8 +1,14 @@
 #!/bin/bash
+# Check if OLLAMA_INIT is not set to "true"
+if [ "$OLLAMA_INIT" != "true" ]; then
+    echo "OLLAMA_INIT is not set to 'true'. Exiting."
+    exit 1
+fi
+
 mkdir -p /workspace/ollama/root_ollama
 ln -s /workspace/ollama/root_ollama /root/.ollama
 curl https://ollama.ai/install.sh | sh
-OLLAMA_HOST=0.0.0.0 ollama serve &
+ollama serve &
 # Wait for ollama to start
 sleep 1
 
