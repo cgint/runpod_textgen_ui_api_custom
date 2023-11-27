@@ -19,7 +19,7 @@ if [ -n "$OLLAMA_PULL" ]; then
     # Iterate over the array and run 'ollama pull' for each item
     for i in "${ADDR[@]}"; do
         echo "Running 'ollama pull' for $i"
-        ollama pull "$i"
+        ollama pull "$i" &
     done
 else
     echo "OLLAMA_PULL is not set or empty"
